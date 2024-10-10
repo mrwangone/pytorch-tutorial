@@ -6,6 +6,7 @@ import torchvision.transforms as transforms
 
 # Device configuration
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+print(device)
 
 # Hyper parameters
 num_epochs = 5
@@ -73,9 +74,9 @@ for epoch in range(num_epochs):
         loss = criterion(outputs, labels)
         
         # Backward and optimize
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+        optimizer.zero_grad() # Clear the gradient
+        loss.backward() # Backpropagation
+        optimizer.step() # Update the gradient
         
         if (i+1) % 100 == 0:
             print ('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}' 
